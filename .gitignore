@@ -1,0 +1,5 @@
+.vagrant
+ansible/roles/wikibase/templates/nginx_wdqs_locations.j2
+zz
+.idea
+
