@@ -27,12 +27,10 @@
     - vim
     - nginx
     - apt-transport-https
-    - ca-certificates
     - curl
-    - gnupg-agent
-    - software-properties-common
     - tmux
     - lynx
+    - default-jdk
 
 - name: 4 pip3 executable
   command: which pip3

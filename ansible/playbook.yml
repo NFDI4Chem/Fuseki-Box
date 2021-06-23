@@ -3,4 +3,10 @@
   roles:
     - role: utils
       tags: 
-        - utils 
+        - utils
+    - role: fuseki
+      tags:
+        - fuseki
+    - role: webserver
+      tags:
+        - webserver

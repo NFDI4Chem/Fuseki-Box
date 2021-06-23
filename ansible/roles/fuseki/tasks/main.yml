@@ -1,0 +1,38 @@
+---
+
+- name: Create fuseki config dir
+  file: 
+    path: '{{ fuseki_config_dir }}'
+    state: directory
+    owner: root
+    group: root
+
+
+- name: Download Jena & Fuseki
+  unarchive:
+    src: '{{ item.binary }}'
+    dest: '{{ item.dir }}'
+    remote_src: yes
+  loop:
+    - { binary: '{{ jena_binary }}', dir: '{{ src_dir }}' }
+    - { binary: '{{ fuseki_binary }}', dir: '{{ src_dir }}' }
+
+
+- name: Configuration files
+  template:
+    src: '{{ item }}'
+    dest: '{{ fuseki_config_dir }}/{{ item }}'
+    owner: root
+    group: root
+  loop:
+    - shiro.ini
+    - config.ttl
+
+- name: Create and start fuseki.service
+  template:
+    src: fuseki.service
+    dest: '{{ fuseki_service_file }}'
+    owner: root
+    group: root
+  notify: start_fuseki_service
+

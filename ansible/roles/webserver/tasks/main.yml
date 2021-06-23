@@ -1,0 +1,26 @@
+
+---
+- name: 1 NGINX fuseki config
+  template:
+    src: nginx_fuseki.j2
+    dest: /etc/nginx/sites-available/fuseki.conf
+    mode: og+wr
+    owner: root
+    group: root
+
+- name: 2 enable NGINX fuseki config
+  file:
+    path: /etc/nginx/sites-enabled/fuseki.conf
+    state: absent 
+
+- name: 2 enable NGINX fuseki config
+  file:
+    src: /etc/nginx/sites-available/fuseki.conf
+    dest: /etc/nginx/sites-enabled/fuseki.conf
+    state: link
+  notify: reload_webserver
+
+- name: print location
+  debug:
+    msg: "Fuseki at {{ vm_url }}"
+

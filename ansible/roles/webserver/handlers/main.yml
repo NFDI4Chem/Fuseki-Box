@@ -1,0 +1,11 @@
+---
+
+- name: reload_webserver
+  service:
+    name: 'nginx'
+    state: reloaded
+
+- name: restart_webserver
+  service:
+    name: 'nginx'
+    state: restarted

@@ -2,6 +2,8 @@
 
 **Installs [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) SPARQL server in a Vagrant box**
 
+* Fuseki version: 4.1.0
+
 
 Requirements to run box:
 * [Git](https://git-scm.com/downloads)
@@ -19,6 +21,10 @@ vagrant up
 ```
 
 After installation process has finished, visit open refine Fuseki UI at <http://192.168.60.113>
+
+Fuseki UI login details:
+* user: `admin`
+* password: `changeme` 
 
 `vagrant reload --provision` will re-run the Ansile playbook in the created Vagrant box
 

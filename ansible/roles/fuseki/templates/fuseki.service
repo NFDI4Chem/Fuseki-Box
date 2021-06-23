@@ -1,0 +1,30 @@
+[Unit]
+Description=Fuseki
+
+[Service]
+# Edit environment variables to match your installation
+Environment=FUSEKI_HOME={{ fuseki_src_dir }}
+Environment=FUSEKI_BASE={{ fuseki_config_dir }}
+# Edit the line below to adjust the amount of memory allocated to Fuseki
+Environment=JVM_ARGS=-Xmx4G
+# Edit to match your installation
+ExecStart={{ fuseki_src_dir }}/fuseki-server
+
+User=root
+Restart=on-abort
+# Java processes exit with status 143 when terminated by SIGTERM, this
+# should be considered a successful shutdown
+SuccessExitStatus=143
+### By default, the service logs to journalctl only.
+### If additional logging to a file is required, uncomment the following three lines
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=fuseki
+### This logs to syslog. If, e.g., rsyslogd is used, you can provide a file
+### /etc/rsyslog.d/fuseki.conf, consisting of the following two lines (uncommented)
+### if $programname == 'fuseki' then /var/log/fuseki/stderrout.log
+### if $programname == 'fuseki' then stop
+
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,26 @@
+
+server {
+    server_name _;
+    # security - prevent information disclosure about server version
+    server_tokens off;
+
+    access_log /var/log/nginx/fuseki.access.log;
+    error_log  /var/log/nginx/fuseki.error.log;
+
+    client_max_body_size 50M;
+    
+    root /var/www/html/;
+
+    rewrite ^/$ {{ fuseki_web_path }}/ redirect; 
+
+    location {{ fuseki_web_path }}/ {
+        rewrite ^{{ fuseki_web_path }}/(.*) /$1 break; # links to /foo go to /ts/foo
+        proxy_pass http://127.0.0.1:{{ fuseki_port }};
+        subs_filter_types text/html text/css text/xml;
+        subs_filter ':{{ fuseki_port }}' '{{ fuseki_web_path }}';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;   
+        }
+
+}
