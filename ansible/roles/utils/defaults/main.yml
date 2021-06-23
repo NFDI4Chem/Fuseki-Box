@@ -1,0 +1,4 @@
+# vars values defined here roleX/defaults/main.yml are overwritten by inventory var values
+# precedence (hightest 1st): -e "var=val", roleX/vars/main.yml, inventory, roleX/defaults/main.yml 
+
+vm_url: 'http://192.168.60.113' # vagrant URL # overwritten by inventory

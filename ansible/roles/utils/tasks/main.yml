@@ -1,0 +1,39 @@
+---
+- name:  0 debug host_vars
+  debug:
+    msg: 'vm_url: {{ vm_url }}; ansible_python_interpreter {{ ansible_python_interpreter }}'
+
+- name: 1 Install aptitude
+  package:
+    name: aptitude
+    state: present
+
+- name: 2 Update and upgrade apt packages
+  apt:
+    upgrade: 'True'
+    update_cache: 'True'
+    cache_valid_time: 86400 #One day
+
+- name: 3 Install apt packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - python3-pip
+    - python3-setuptools
+    - zip
+    - wget
+    - git
+    - vim
+    - nginx
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
+    - tmux
+    - lynx
+
+- name: 4 pip3 executable
+  command: which pip3
+  register: pip3_path
