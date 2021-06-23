@@ -10,5 +10,5 @@ fuseki_default_dataset: 'fuseki_dataset'  # needs to be overwritten by inventory
 fuseki_url_path: '/r/fuseki'  # needs to be overwritten by inventory
 sparql_editor_dir: 'sparql'
 fuseki_admin_pwd: 'changeme'  # needs to be overwritten by inventory
-fuseki_web_path: '/fuseki/ui'
+fuseki_web_path: '/jena/fuseki'
 fuseki_port: '3030'
