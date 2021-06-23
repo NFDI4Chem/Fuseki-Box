@@ -56,4 +56,8 @@ vagrant resume
 
 # TODO:
 * create and load data-set in playbook
+    * see [fuseki-server-protocol](https://jena.apache.org/documentation/fuseki2/fuseki-server-protocol.html)
+    * see [how-can-i-add-a-new-dataset-to-apache-fuseki-using-the-command-line](https://stackoverflow.com/questions/50203347/how-can-i-add-a-new-dataset-to-apache-fuseki-using-the-command-line)
 * change variables that will be overwritten by host inventories from  `ansible/group_vars/all.yml` to `ansible/roles/*/defaults/main.yml`
+* when deployed to public VMs limit UPDATE SPARQL request to localhost and other IP in webserver configuration
+* enable [inference](https://jena.apache.org/documentation/inference/)  
