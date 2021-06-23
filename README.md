@@ -49,3 +49,11 @@ vagrant suspend
 # resume from disc
 vagrant resume
 ```
+
+# Test Requests to Fuseki
+* Status of all datasets `curl http://192.168.60.113/fuseki/ui/$/status -X POST -H 'Accept: application/sparql-results+json,*/*;q=0.9'` 
+* SPARQL SELECT query to RXNO dataset `curl http://192.168.60.113/fuseki/ui/rxno/query -X POST --data 'query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0ASELECT+*+WHERE+%7B%3Fsubject+rdf%3Atype+owl%3AClass%3B+rdfs%3Alabel+%3Flabel.%7D+LIMIT+5' -H 'Accept: application/sparql-results+json,*/*;q=0.9'`
+
+# TODO:
+* create and load data-set in playbook
+* change variables that will be overwritten by host inventories from  `ansible/group_vars/all.yml` to `ansible/roles/*/defaults/main.yml`
