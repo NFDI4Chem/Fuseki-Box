@@ -55,14 +55,23 @@ vagrant resume
 
 
 # TODO:
-* webserver debug - remove redirect from / to fuseki - as in production it might interfere with TS
-
 * change variables that will be overwritten by host inventories from  `ansible/group_vars/all.yml` to `ansible/roles/*/defaults/main.yml`
 * when deployed to public VMs limit UPDATE SPARQL request to localhost and other IP in webserver configuration
 * enable [inference](https://jena.apache.org/documentation/inference/)  
 
 LOAD RXNO
-`/usr/local/src/apache-jena-4.1.0/bin/tdb2.tdbloader -loc RXNO --graph=https://raw.githubusercontent.com/rsc-ontologies/rxno/master/rxno.owl` 
 
-` rm /etc/nginx/sites-enabled/default ` 
-reload
+`/usr/local/src/apache-jena-4.1.0/bin/tdb2.tdbloader --loc RXNO --graph=https://raw.githubusercontent.com/rsc-ontologies/rxno/master/rxno.owl` 
+
+
+load data to tdb2
+```
+systemctl stop fuseki
+wget https://raw.githubusercontent.com/rsc-ontologies/rxno/master/rxno.owl
+/usr/local/src/apache-jena-4.1.0/bin/tdb2.tdbloader --loc=/etc/fuseki/databases/rxno rxno.owl 
+systemctl start fuseki
+```
+create dataset from
+
+/usr/local/src/apache-jena-fuseki-4.1.0/fuseki-server --tdb2 --loc=/etc/fuseki/databases/rxno/ /rxno
+
