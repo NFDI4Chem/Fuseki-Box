@@ -11,8 +11,6 @@ server {
     
     root /var/www/html/;
 
-    rewrite ^/$ {{ fuseki_web_path }}/ redirect; 
-
     location {{ fuseki_web_path }}/ {
         rewrite ^{{ fuseki_web_path }}/(.*) /$1 break; # links to /foo go to /ts/foo
         proxy_pass http://127.0.0.1:{{ fuseki_port }};

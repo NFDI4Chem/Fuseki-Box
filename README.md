@@ -20,8 +20,7 @@ cd fuseki-box
 vagrant up
 ```
 
-After installation process has finished, visit open refine Fuseki UI at <http://192.168.60.113>
-
+After installation process has finished, **visit Fuseki UI at  <http://192.168.60.113/jena/fuseki/>**
 Fuseki UI login details:
 * user: `admin`
 * password: `changeme` 
@@ -56,7 +55,8 @@ vagrant resume
 
 
 # TODO:
-* webserver debug
+* webserver debug - remove redirect from / to fuseki - as in production it might interfere with TS
+
 * change variables that will be overwritten by host inventories from  `ansible/group_vars/all.yml` to `ansible/roles/*/defaults/main.yml`
 * when deployed to public VMs limit UPDATE SPARQL request to localhost and other IP in webserver configuration
 * enable [inference](https://jena.apache.org/documentation/inference/)  
