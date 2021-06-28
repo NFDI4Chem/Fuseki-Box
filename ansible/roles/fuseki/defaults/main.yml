@@ -1,0 +1,5 @@
+# vars values defined here roleX/defaults/main.yml are overwritten by inventory var values
+# precedence (hightest 1st): -e "var=val", roleX/vars/main.yml, inventory, roleX/defaults/main.yml 
+
+fuseki_admin_pwd: 'changeme'  # needs to be overwritten by inventory
+fuseki_web_path: '/jena/fuseki'

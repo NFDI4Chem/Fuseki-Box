@@ -41,7 +41,7 @@
 - name: stop fuseki service
   systemd:
     name: fuseki.service
-    state: stop
+    state: stopped
 
 - name: Download rxno.owl
   get_url:
@@ -51,10 +51,23 @@
 
 - name: load rxno to tdb2
   command:
-    cmd: '{{ fuseki_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/rxno {{ src_dir }}/rxno.owl' 
+    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/rxno {{ src_dir }}/rxno.owl' 
   notify: start_fuseki_service
 
+- name: create fuseki configdir
+  file:
+    path: '{{ fuseki_config_dir }}/configuration/'
+    state: directory
+    owner: root
+    group: root
+    mode: 'a+rw'
 
-- name: create rxno dataset
-  command:
-    cmd: '{{ fuseki_src_dir }}/fuseki-server  --tdb2 --loc={{ fuseki_config_dir }}/databases/rxno /rxno' 
+- name: copy fuseki rxno dataset config
+  copy:
+    src: rxno_config.ttl
+    dest: '{{ fuseki_config_dir }}/configuration/rxno.ttl'
+
+- name: start fuseki
+  systemd:
+    name: fuseki.service
+    state: started
