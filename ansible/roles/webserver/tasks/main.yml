@@ -1,5 +1,6 @@
 
 ---
+
 - name: 1 NGINX fuseki config
   template:
     src: nginx_fuseki.j2
@@ -8,12 +9,12 @@
     owner: root
     group: root
 
-- name: 2 enable NGINX fuseki config
+- name: 2 disable NGINX default config
   file:
-    path: /etc/nginx/sites-enabled/fuseki.conf
+    path: /etc/nginx/sites-enabled/default
     state: absent 
 
-- name: 2 enable NGINX fuseki config
+- name: 3 enable NGINX fuseki config
   file:
     src: /etc/nginx/sites-available/fuseki.conf
     dest: /etc/nginx/sites-enabled/fuseki.conf

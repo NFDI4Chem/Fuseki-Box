@@ -6,9 +6,5 @@ jena_binary: 'https://downloads.apache.org/jena/binaries/apache-jena-4.1.0.tar.g
 fuseki_binary: 'https://downloads.apache.org/jena/binaries/apache-jena-fuseki-4.1.0.tar.gz'
 fuseki_config_dir: '/etc/fuseki'
 fuseki_service_file: '/etc/systemd/system/fuseki.service'
-fuseki_default_dataset: 'fuseki_dataset'  # needs to be overwritten by inventory
-fuseki_url_path: '/r/fuseki'  # needs to be overwritten by inventory
 sparql_editor_dir: 'sparql'
-fuseki_admin_pwd: 'changeme'  # needs to be overwritten by inventory
-fuseki_web_path: '/jena/fuseki'
 fuseki_port: '3030'
