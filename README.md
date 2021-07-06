@@ -50,8 +50,8 @@ vagrant resume
 ```
 
 # Test Requests to Fuseki
-* Status of all datasets `curl http://192.168.60.113/fuseki/ui/$/status -X POST -H 'Accept: application/sparql-results+json,*/*;q=0.9'` 
-* SPARQL SELECT query to RXNO dataset `curl http://192.168.60.113/fuseki/ui/rxno/query -X POST --data 'query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0ASELECT+*+WHERE+%7B%3Fsubject+rdf%3Atype+owl%3AClass%3B+rdfs%3Alabel+%3Flabel.%7D+LIMIT+5' -H 'Accept: application/sparql-results+json,*/*;q=0.9'`
+* Status of all datasets `curl http://192.168.60.113/jena/fuseki/$/status -X POST -H 'Accept: application/sparql-results+json,*/*;q=0.9'` 
+* SPARQL SELECT query to RXNO dataset `curl http://192.168.60.113/jena/fuseki/rxno/query -X POST --data 'query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0ASELECT+*+WHERE+%7B%3Fsubject+rdf%3Atype+owl%3AClass%3B+rdfs%3Alabel+%3Flabel.%7D+LIMIT+50' -H 'Accept: application/sparql-results+json,*/*;q=0.9'`
 
 
 
@@ -79,3 +79,33 @@ by creating the dataset config ttl in /etc/fuseki/configuration/rxno.ttl - see <
 
 /usr/local/src/apache-jena-fuseki-4.1.0/fuseki-server --tdb2 --loc=/etc/fuseki/databases/rxno/ /rxno
 
+
+http://192.168.60.113/jena/fuseki/rxno/update
+
+update 
+
+`curl http://192.168.60.113/jena/fuseki/test/update -X POST --data 'update=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0APREFIX+country%3A+%3Chttp%3A%2F%2Feulersharp.sourceforge.net%2F2003%2F03swap%2Fcountries%23%3E%0AINSERT+DATA%0A%7B%0A+country%3Aooo+foaf%3Aname+%22OOOOO%22%40en+.%0A%7D' -H 'Accept: text/plain,*/*;q=0.9'`
+
+
+
+### deny
+
+Then write a regexp for them: location ~^ /(post|example|another/example)\.php$ 
+
+currently I can deny the update request, but the allowed IPs get a 404
+
+
+
+    location ~* /jena/fuseki/.+/update$ {
+        # allow 192.168.178.20;
+        # allow 192.168.60.1; 
+        # allow 192.168.60.113;
+        # deny all;
+        # allow all;
+        return 301 https://regex101.com; 
+        # rewrite ^/jena/fuseki/(.*) /$1 break; # links to /foo go to /ts/foo
+        # proxy_pass http://127.0.0.1:3030;
+        # proxy_set_header Host $host;
+        # proxy_set_header X-Real-IP $remote_addr;
+        # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;   
+ }

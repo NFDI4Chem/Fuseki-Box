@@ -1,0 +1,4 @@
+allowed_update_ips:
+  - 127.0.0.1
+  - 192.168.60.113
+# overwrite in deployment inventories 
