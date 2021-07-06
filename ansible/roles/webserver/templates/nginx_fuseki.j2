@@ -22,8 +22,6 @@ server {
         }
 
     location ~* {{ fuseki_web_path }}/(.+)/update$ {	
-        # allow 192.168.60.113;
-	    # allow 127.0.0.1;
         {% for ip in allowed_update_ips %}
         allow {{ ip }};
         {% endfor %}
