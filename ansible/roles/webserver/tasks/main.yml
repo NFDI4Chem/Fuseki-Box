@@ -19,7 +19,7 @@
     src: /etc/nginx/sites-available/fuseki.conf
     dest: /etc/nginx/sites-enabled/fuseki.conf
     state: link
-  notify: reload_webserver
+  notify: restart_webserver
 
 - name: print location
   debug:
