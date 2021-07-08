@@ -6,7 +6,7 @@
     path: /etc/nginx/includes/
     mode: og+wr
     owner: root
-    group: root   
+    group: root
 
 - name: 1 NGINX fuseki config
   template:

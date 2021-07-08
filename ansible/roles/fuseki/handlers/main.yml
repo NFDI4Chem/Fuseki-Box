@@ -1,12 +1,12 @@
 - name: start_fuseki_service
-  systemd:
+  service:
     name: fuseki.service
     state: restarted
     enabled: yes
     daemon_reload: yes
 
 - name: restart_fuseki_service
-  systemd:
+  service:
     name: fuseki.service
     state: restarted
 
