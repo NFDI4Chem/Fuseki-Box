@@ -1,23 +1,34 @@
 
 ---
+- name: create nginx includes dir
+  file:
+    state: dir
+    path: /etc/nginx/includes/
+    mode: og+wr
+    owner: root
+    group: root   
 
 - name: 1 NGINX fuseki config
   template:
     src: nginx_fuseki.j2
-    dest: /etc/nginx/sites-available/fuseki.conf
+    dest: '/etc/nginx/{{ nginx_fuseki_conf }}'
     mode: og+wr
     owner: root
     group: root
 
-- name: 2 disable NGINX default config
-  file:
-    path: /etc/nginx/sites-enabled/default
-    state: absent 
+- name: insert fuseki conf to NGINX site default
+  lineinfile:
+    path: /etc/nginx/default
+    insertafter: 'location\ \/\ \{[\w\W]*?\}'
+    line: 'include {{ nginx_fuseki_conf }};'
+    mode: og+wr
+    owner: root
+    group: root
 
-- name: 3 enable NGINX fuseki config
+- name: 3 enable NGINX default config
   file:
-    src: /etc/nginx/sites-available/fuseki.conf
-    dest: /etc/nginx/sites-enabled/fuseki.conf
+    src: /etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-enabled/default
     state: link
   notify: restart_webserver
 
