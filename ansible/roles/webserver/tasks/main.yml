@@ -2,7 +2,7 @@
 ---
 - name: create nginx includes dir
   file:
-    state: dir
+    state: directory
     path: /etc/nginx/includes/
     mode: og+wr
     owner: root
@@ -16,11 +16,17 @@
     owner: root
     group: root
 
+- name: remove comments from NGINX site default
+  lineinfile:
+    path: /etc/nginx/sites-available/default
+    regexp: '#\s*?.*$'
+    state: absent
+
 - name: insert fuseki conf to NGINX site default
   lineinfile:
-    path: /etc/nginx/default
-    insertafter: 'location\ \/\ \{[\w\W]*?\}'
-    line: 'include {{ nginx_fuseki_conf }};'
+    path: /etc/nginx/sites-available/default
+    insertafter: 'server_name _;'
+    line: '        include {{ nginx_fuseki_conf }};'
     mode: og+wr
     owner: root
     group: root
