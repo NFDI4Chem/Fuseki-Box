@@ -1,16 +1,4 @@
 
-server {
-    server_name _;
-    # security - prevent information disclosure about server version
-    server_tokens off;
-
-    access_log /var/log/nginx/fuseki.access.log;
-    error_log  /var/log/nginx/fuseki.error.log;
-
-    client_max_body_size 50M;
-    
-    root /var/www/html/;
-
     location {{ fuseki_web_path }}/ {
         rewrite ^{{ fuseki_web_path }}/(.*) /$1 break; # links to /foo go to /ts/foo
         proxy_pass http://127.0.0.1:{{ fuseki_port }};
@@ -32,4 +20,3 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;   
      }
-}
