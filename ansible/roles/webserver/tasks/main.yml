@@ -1,6 +1,6 @@
 
 ---
-- name: create nginx includes dir
+- name: 1 create nginx includes dir
   file:
     state: directory
     path: /etc/nginx/includes/
@@ -8,7 +8,7 @@
     owner: root
     group: root
 
-- name: 1 NGINX fuseki config
+- name: 2 NGINX fuseki includes config
   template:
     src: nginx_fuseki.j2
     dest: '/etc/nginx/{{ nginx_fuseki_conf }}'
@@ -16,13 +16,13 @@
     owner: root
     group: root
 
-- name: remove comments from NGINX site default
+- name: 3 remove comments from NGINX site default
   lineinfile:
     path: /etc/nginx/sites-available/default
     regexp: '#\s*?.*$'
     state: absent
 
-- name: insert fuseki conf to NGINX site default
+- name: 4 insert fuseki conf to NGINX site default
   lineinfile:
     path: /etc/nginx/sites-available/default
     insertafter: 'server_name _;'
@@ -31,14 +31,14 @@
     owner: root
     group: root
 
-- name: 3 enable NGINX default config
+- name: 5 enable NGINX default config
   file:
     src: /etc/nginx/sites-available/default
     dest: /etc/nginx/sites-enabled/default
     state: link
   notify: restart_webserver
 
-- name: print location
+- name: 6 print location
   debug:
     msg: "Fuseki at {{ vm_url }}"
 
