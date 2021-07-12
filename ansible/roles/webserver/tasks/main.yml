@@ -36,7 +36,7 @@
     src: /etc/nginx/sites-available/default
     dest: /etc/nginx/sites-enabled/default
     state: link
-  notify: restart_webserver
+  notify: reload_webserver
 
 - name: 6 print location
   debug:
