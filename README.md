@@ -2,7 +2,7 @@
 
 **Installs [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) SPARQL server in a Vagrant box**
 
-* Fuseki version: 4.1.0
+* Fuseki version: 4.4.0
 
 
 Requirements to run box:
