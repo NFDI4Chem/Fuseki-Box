@@ -34,8 +34,13 @@
     dest: '{{ fuseki_service_file }}'
     owner: root
     group: root
-  notify: start_fuseki_service
+ # notify: start_fuseki_service
 
+- name: Enable Fuseki service
+  systemd:
+    name: fuseki.service
+    state: enabled
+  notify: start_fuseki_service
 
 # load data to tdb2
 - name: stop fuseki service
