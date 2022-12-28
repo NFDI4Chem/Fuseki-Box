@@ -70,15 +70,15 @@
 
     # load ckan1368 data to tdb2
 
-- name: Download catalog.rdf
+- name: Download catalog.ttl
   get_url:
-    url: https://service.tib.eu/sfb1368/ckan/catalog.rdf
-    dest: '{{ src_dir }}/catalog.rdf'
+    url: https://service.tib.eu/sfb1368/ckan/catalog.ttl
+    dest: '{{ src_dir }}/catalog.ttl'
     mode: "a+rw"
 
 - name: load catalog to tdb2
   command:
-    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/ckan1368 {{ src_dir }}/catalog.rdf'
+    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/ckan1368 {{ src_dir }}/catalog.ttl'
   notify: start_fuseki_service
 
 - name: create fuseki configdir
