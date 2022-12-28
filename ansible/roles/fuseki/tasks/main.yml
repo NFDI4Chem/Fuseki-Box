@@ -73,7 +73,7 @@
 - name: Download catalog.rdf
   get_url:
     url: https://service.tib.eu/sfb1368/ckan/catalog.rdf
-    dest: '{{ src_dir }}/catalog.ttl'
+    dest: '{{ src_dir }}/catalog.rdf'
     mode: "a+rw"
 
 - name: load catalog to tdb2
