@@ -23,14 +23,12 @@ ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
 :service_tdb_all  rdf:type            fuseki:Service ;
         rdfs:label                    "TDB2 ckan1368" ;
-        fuseki:dataset                :tdb_dataset_readwrite ;
+        fuseki:dataset                :tdb2_dataset_readonly ;
         fuseki:name                   "ckan1368" ;
-        fuseki:serviceQuery           "query" , "" , "sparql" ;
-        fuseki:serviceReadGraphStore  "get" ;
-        fuseki:serviceReadWriteGraphStore
-                "data" ;
-        fuseki:serviceUpdate          "" , "update" ;
-        fuseki:serviceUpload          "upload" .
+        fuseki:endpoint  [ fuseki:operation fuseki:query ; fuseki:name "sparql" ];
+        fuseki:endpoint  [ fuseki:operation fuseki:query ; fuseki:name "query" ];
+        fuseki:endpoint  [ fuseki:operation fuseki:gsp_r ; fuseki:name "data" ];
+
 
 ja:ViewGraph  rdfs:subClassOf  ja:Model .
 
@@ -49,7 +47,7 @@ ja:RDFDatasetOne  rdfs:subClassOf  ja:RDFDataset .
 
 ja:MemoryDataset  rdfs:subClassOf  ja:RDFDataset .
 
-:tdb_dataset_readwrite
+:tdb2_dataset_readonly
         rdf:type       tdb2:DatasetTDB2 ;
         tdb2:location  "/etc/fuseki/databases/ckan1368" .
 
