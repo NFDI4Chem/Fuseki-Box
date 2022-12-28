@@ -38,7 +38,7 @@
 
 
 
-# load data to tdb2
+# load rxno data to tdb2
 - name: stop fuseki service
   systemd:
     name: fuseki.service
@@ -67,6 +67,32 @@
   copy:
     src: rxno_config.ttl
     dest: '{{ fuseki_config_dir }}/configuration/rxno.ttl'
+
+    # load ckan1368 data to tdb2
+
+- name: Download catalog.rdf
+  get_url:
+    url: https://service.tib.eu/sfb1368/ckan/catalog.rdf
+    dest: '{{ src_dir }}/catalog.rdf'
+    mode: "a+rw"
+
+- name: load catalog to tdb2
+  command:
+    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/ckan1368 {{ src_dir }}/catalog.rdf'
+  notify: start_fuseki_service
+
+- name: create fuseki configdir
+  file:
+    path: '{{ fuseki_config_dir }}/configuration/'
+    state: directory
+    owner: root
+    group: root
+    mode: 'a+rw'
+
+- name: copy fuseki ckan1368 dataset config
+  copy:
+    src: ckan1368.ttl
+    dest: '{{ fuseki_config_dir }}/configuration/ckan1368.ttl'
 
 - name: start fuseki
   systemd:
