@@ -22,7 +22,10 @@
    # This can also be set on a per dataset basis in the dataset assembler.
    #
    # ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "30000" ] ;
-
+   fuseki:services (
+     <#service_tdb_read_only>
+     <#service_tdb_all>
+   ) .
    # Add any custom classes you want to load.
    # Must have a "public static void init()" method.
    # ja:loadClass "your.code.Class" ;
