@@ -8,6 +8,7 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
 @prefix swivt:   <http://semantic-mediawiki.org/swivt/1.0#> .
+@prefix :        <#> .
 
 [] rdf:type fuseki:Server ;
    # Example::
@@ -23,7 +24,7 @@
    #
    # ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "30000" ] ;
    fuseki:services (
-     <#service_tdb_read_only>
+    <#service_tdb_read_only>
      <#service_tdb_all>
    ) .
    # Add any custom classes you want to load.
