@@ -1,9 +1,15 @@
-@prefix :       <http://base/#> .
-@prefix fuseki: <http://jena.apache.org/fuseki#> .
-@prefix ja:     <http://jena.hpl.hp.com/2005/11/Assembler#> .
-@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix tdb2:   <http://jena.apache.org/2016/tdb#> .
+PREFIX :       <http://base/#> .
+PREFIX fuseki: <http://jena.apache.org/fuseki#> .
+PREFIX ja:     <http://jena.hpl.hp.com/2005/11/Assembler#> .
+PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+PREFIX tdb2:   <http://jena.apache.org/2016/tdb#> .
+
+[] rdf:type fuseki:Server ;
+   fuseki:services (
+     <#service_tdb_read_only>
+     <#service_tdb_all>
+   ) .
 
 tdb2:GraphTDB  rdfs:subClassOf  ja:Model .
 
@@ -19,18 +25,18 @@ tdb2:GraphTDB2  rdfs:subClassOf  ja:Model .
 <http://jena.apache.org/text#TextDataset>
         rdfs:subClassOf  ja:RDFDataset .
 
+
+
 ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
-:service_tdb_all          rdf:type            fuseki:Service ;
+<#service_tdb_read_only>  rdf:type            fuseki:Service ;
         rdfs:label                    "TDB2 ckan1368" ;
-        fuseki:dataset                :tdb_dataset_readwrite ;
+        fuseki:dataset                <#tdb_dataset_readonly> ;
         fuseki:name                   "ckan1368" ;
         fuseki:serviceQuery           "query" , "" , "sparql" ;
-        fuseki:serviceReadGraphStore  "get" ;
-        fuseki:serviceReadWriteGraphStore
-                "data" ;
-        fuseki:serviceUpdate          "" , "update" ;
-        fuseki:serviceUpload          "upload" .
+        fuseki:serviceUpdate            "update" ;
+        fuseki:serviceReadGraphStore    "data" ;
+        fuseki:serviceReadGraphStore    "get" ;
 
 ja:ViewGraph  rdfs:subClassOf  ja:Model .
 
@@ -49,9 +55,8 @@ ja:RDFDatasetOne  rdfs:subClassOf  ja:RDFDataset .
 
 ja:MemoryDataset  rdfs:subClassOf  ja:RDFDataset .
 
-:tdb_dataset_readwrite
+<#tdb_dataset_readonly>
         rdf:type       tdb2:DatasetTDB2 ;
         tdb2:location  "/etc/fuseki/databases/ckan1368" .
-
 
 ja:DatasetRDFS  rdfs:subClassOf  ja:RDFDataset .
