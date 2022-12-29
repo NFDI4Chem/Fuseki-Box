@@ -36,38 +36,6 @@
     group: root
   notify: start_fuseki_service
 
-# load rxno data to tdb2
-- name: stop fuseki service
-  systemd:
-    name: fuseki.service
-    state: stopped
-
-- name: Download rxno.owl
-  get_url:
-    url: https://raw.githubusercontent.com/rsc-ontologies/rxno/master/rxno.owl
-    dest: '{{ src_dir }}/rxno.owl'
-    mode: "a+rw"
-
-- name: load rxno to tdb2
-  command:
-    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/rxno {{ src_dir }}/rxno.owl'
-  notify: start_fuseki_service
-
-
-- name: create fuseki configdir
-  file:
-    path: '{{ fuseki_config_dir }}/configuration/'
-    state: directory
-    owner: root
-    group: root
-    mode: 'a+rw'
-
-- name: copy fuseki rxno dataset config
-  copy:
-    src: rxno_config.ttl
-    dest: '{{ fuseki_config_dir }}/configuration/rxno.ttl'
-  notify: start_fuseki_service
-
 - name: start fuseki
   systemd:
     name: fuseki.service
