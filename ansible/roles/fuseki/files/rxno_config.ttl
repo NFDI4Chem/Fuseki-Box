@@ -36,7 +36,9 @@ ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
         fuseki:serviceQuery           "query" , "" , "sparql" ;
         fuseki:serviceUpdate            "update" ;
         fuseki:serviceUpload            "upload" ;
+        fuseki:serviceReadGraphStore       "get" ;
         fuseki:serviceReadWriteGraphStore      "data" ;
+        
 
 ja:ViewGraph  rdfs:subClassOf  ja:Model .
 
