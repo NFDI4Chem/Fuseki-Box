@@ -21,7 +21,7 @@ tdb2:GraphTDB2  rdfs:subClassOf  ja:Model .
 
 ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
-:service_tdb_all  rdf:type            fuseki:Service ;
+:service_tdb_read_only  rdf:type            fuseki:Service ;
         rdfs:label                    "TDB2 ckan1368" ;
         fuseki:dataset                :tdb_dataset_read ;
         fuseki:name                   "ckan1368" ;
