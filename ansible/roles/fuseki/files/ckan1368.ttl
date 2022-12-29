@@ -23,9 +23,9 @@ tdb2:GraphTDB2  rdfs:subClassOf  ja:Model .
 ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
 :service_tdb_readonly  rdf:type            fuseki:Service ;
-        rdfs:label                    "TDB2 rxno" ;
-        fuseki:dataset                :tdb_dataset_readwrite ;
-        fuseki:name                   "rxno" ;
+        rdfs:label                    "TDB2 ckan1368" ;
+        fuseki:dataset                :tdb_dataset_readonly ;
+        fuseki:name                   "ckan1368" ;
         fuseki:serviceQuery           "query" , "" , "sparql" ;
         fuseki:serviceReadGraphStore  "get" ;
         fuseki:serviceReadGraphstore
