@@ -36,22 +36,11 @@
     group: root
   notify: start_fuseki_service
 
-# load data to tdb2
+# prepare loading files to tbd2
 - name: stop fuseki service
   systemd:
     name: fuseki.service
     state: stopped
-
-- name: Download rxno.owl
-  get_url:
-    url: https://raw.githubusercontent.com/rsc-ontologies/rxno/master/rxno.owl
-    dest: '{{ src_dir }}/rxno.owl'
-    mode: "a+rw"
-
-- name: load rxno to tdb2
-  command:
-    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/rxno {{ src_dir }}/rxno.owl'
-  notify: start_fuseki_service
 
 - name: create fuseki configdir
   file:
@@ -61,10 +50,40 @@
     group: root
     mode: 'a+rw'
 
+# load rxno to tbd2
+- name: Download rxno.owl
+  get_url:
+    url: https://raw.githubusercontent.com/rsc-ontologies/rxno/master/rxno.owl
+    dest: '{{ src_dir }}/rxno.owl'
+    mode: "a+rw"
+
+- name: load rxno to tdb2
+  command:
+    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/rxno {{ src_dir }}/rxno.owl'
+  # notify: start_fuseki_service
+
 - name: copy fuseki rxno dataset config
   copy:
     src: rxno_config.ttl
     dest: '{{ fuseki_config_dir }}/configuration/rxno.ttl'
+
+# load ckan1368
+- name: Download catalog.ttl
+  get_url:
+    url: https://service.tib.eu/sfb1368/ckan/catalog.ttl
+    dest: '{{ src_dir }}/catalog.ttl'
+    mode: "a+rw"
+
+- name: load catalog to tdb2
+  command:
+    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/ckan1368 {{ src_dir }}/catalog.ttl'
+  # notify: start_fuseki_service
+
+- name: copy fuseki ckan1368 dataset config
+  copy:
+    src: ckan1368.ttl
+    dest: '{{ fuseki_config_dir }}/configuration/ckan1368.ttl'
+
 
 - name: start fuseki
   systemd:
