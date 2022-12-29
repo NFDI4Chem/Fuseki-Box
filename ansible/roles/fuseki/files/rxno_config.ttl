@@ -26,11 +26,11 @@ ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
         fuseki:dataset                :tdb_dataset_readwrite ;
         fuseki:name                   "rxno" ;
         fuseki:serviceQuery           "query" , "" , "sparql" ;
-        fuseki:serviceUpdate            "update" ;
-        fuseki:serviceUpload            "upload" ;
-        fuseki:serviceReadGraphStore       "get" ;
-        fuseki:serviceReadWriteGraphStore      "data" ;
-        
+        fuseki:serviceReadGraphStore  "get" ;
+        fuseki:serviceReadWriteGraphStore
+                "data" ;
+        fuseki:serviceUpdate          "" , "update" ;
+        fuseki:serviceUpload          "upload" .
 
 ja:ViewGraph  rdfs:subClassOf  ja:Model .
 
@@ -54,4 +54,3 @@ ja:MemoryDataset  rdfs:subClassOf  ja:RDFDataset .
         tdb2:location  "/etc/fuseki/databases/rxno" .
 
 ja:DatasetRDFS  rdfs:subClassOf  ja:RDFDataset .
-
