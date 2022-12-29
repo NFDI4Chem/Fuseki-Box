@@ -39,6 +39,7 @@
 - name: Enable Fuseki service
   systemd:
     name: fuseki.service
+    state: started
     enabled: yes
   notify: start_fuseki_service
 
