@@ -65,10 +65,8 @@
   copy:
     src: rxno_config.ttl
     dest: '{{ fuseki_config_dir }}/configuration/rxno.ttl'
+  notify: start_fuseki_service
 
-- name: start fuseki
-  systemd:
-    name: fuseki.service
 
 
 
