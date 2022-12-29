@@ -5,9 +5,6 @@
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix tdb2:   <http://jena.apache.org/2016/tdb#> .
 
-fuseki:services (
-     :service_tdb_read_only
-   ) .
 
 tdb2:GraphTDB  rdfs:subClassOf  ja:Model .
 
@@ -25,13 +22,16 @@ tdb2:GraphTDB2  rdfs:subClassOf  ja:Model .
 
 ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
-:service_tdb_read_only  rdf:type      fuseki:Service ;
-        rdfs:label                    "TDB2 ckan1368" ;
-        fuseki:dataset                :tdb_dataset_readonly ;
-        fuseki:name                   "ckan1368" ;
+:service_tdb_readonly  rdf:type            fuseki:Service ;
+        rdfs:label                    "TDB2 rxno" ;
+        fuseki:dataset                :tdb_dataset_readwrite ;
+        fuseki:name                   "rxno" ;
         fuseki:serviceQuery           "query" , "" , "sparql" ;
         fuseki:serviceReadGraphStore  "get" ;
+        fuseki:serviceReadGraphstore
+                "data" ;
         fuseki:serviceUpdate          "" , "update" ;
+        fuseki:serviceUpload          "upload" .
 
 ja:ViewGraph  rdfs:subClassOf  ja:Model .
 
