@@ -36,6 +36,11 @@
     group: root
   notify: start_fuseki_service
 
+- name: Enable Fuseki service
+  systemd:
+    name: fuseki.service
+    state: enabled
+  notify: start_fuseki_service
 
 
 # load rxno data to tdb2
