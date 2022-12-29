@@ -8,6 +8,7 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
 @prefix swivt:   <http://semantic-mediawiki.org/swivt/1.0#> .
+@prefix :        <#> .
 
 [] rdf:type fuseki:Server ;
    # Example::
