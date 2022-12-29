@@ -85,14 +85,6 @@
     cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/ckan1368 {{ src_dir }}/catalog.ttl'
   notify: start_fuseki_service
 
-- name: create fuseki configdir
-  file:
-    path: '{{ fuseki_config_dir }}/configuration/'
-    state: directory
-    owner: root
-    group: root
-    mode: 'a+rw'
-
 - name: copy fuseki ckan1368 dataset config
   copy:
     src: ckan1368.ttl
