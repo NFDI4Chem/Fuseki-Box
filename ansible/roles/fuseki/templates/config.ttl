@@ -14,6 +14,8 @@ PREFIX swivt:   <http://semantic-mediawiki.org/swivt/1.0#> .
 
 [] rdf:type fuseki:Server ;
 
+
+
    # Example::
    # Server-wide query timeout.
    #
