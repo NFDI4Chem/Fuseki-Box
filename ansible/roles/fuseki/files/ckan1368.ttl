@@ -23,8 +23,6 @@ tdb2:GraphTDB2  rdfs:subClassOf  ja:Model .
 <http://jena.apache.org/text#TextDataset>
         rdfs:subClassOf  ja:RDFDataset .
 
-
-
 ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
 :service_tdb_read_only  rdf:type      fuseki:Service ;
