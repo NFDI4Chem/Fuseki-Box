@@ -25,8 +25,11 @@ ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
         rdfs:label                    "TDB2 ckan1368" ;
         fuseki:dataset                :tdb_dataset_read ;
         fuseki:name                   "ckan1368" ;
-        fuseki:serviceQuery           "query" , "" , "sparql" ;
-        fuseki:serviceReadGraphStore  "get" ;
+        fuseki:serviceQuery             "query" ;
+        fuseki:serviceQuery             "sparql" ;
+        fuseki:serviceUpdate            "update" ;
+        fuseki:serviceReadGraphStore    "data" ;
+        fuseki:serviceReadGraphStore    "get" ;
 
 ja:ViewGraph  rdfs:subClassOf  ja:Model .
 
