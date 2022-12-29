@@ -23,7 +23,7 @@ ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
 :service_tdb_all  rdf:type            fuseki:Service ;
         rdfs:label                    "TDB2 ckan1368" ;
-        fuseki:dataset                :dataset ;
+        fuseki:dataset                :tdb2_dataset_readonly ;
         fuseki:name                   "ckan1368" ;
         fuseki:endpoint  [ fuseki:operation fuseki:query ; fuseki:name "sparql" ];
         fuseki:endpoint  [ fuseki:operation fuseki:query ; fuseki:name "query" ];
@@ -52,21 +52,5 @@ ja:MemoryDataset  rdfs:subClassOf  ja:RDFDataset .
 :tdb2_dataset_readonly
         rdf:type       tdb2:DatasetTDB2 ;
         tdb2:location  "/etc/fuseki/databases/ckan1368" .
-
-# Dataset with only the default graph.
-:dataset a ja:RDFDataset ;
-    ja:defaultGraph :model_inf .
-
-# The inference model
-:model_inf a ja:InfModel ;
-     ja:baseModel :graph ;
-     ja:reasoner [
-         ja:reasonerURL <http://jena.hpl.hp.com/2003/OWLFBRuleReasoner>
-     ] .
-
-# The base data.
-:graph rdf:type tdb2:GraphTDB ;
-  tdb2:dataset :tdb2_dataset_readonly ;
-  .
 
 ja:DatasetRDFS  rdfs:subClassOf  ja:RDFDataset .
