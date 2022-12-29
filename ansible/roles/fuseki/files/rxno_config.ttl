@@ -5,10 +5,6 @@
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix tdb2:   <http://jena.apache.org/2016/tdb#> .
 
-fuseki:services (
-     :service_tdb_all
-   ) .
-
 tdb2:GraphTDB  rdfs:subClassOf  ja:Model .
 
 ja:ModelRDFS  rdfs:subClassOf  ja:Model .
