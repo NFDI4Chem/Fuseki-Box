@@ -5,6 +5,7 @@
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix tdb2:   <http://jena.apache.org/2016/tdb#> .
 
+
 tdb2:GraphTDB  rdfs:subClassOf  ja:Model .
 
 ja:ModelRDFS  rdfs:subClassOf  ja:Model .
@@ -23,7 +24,7 @@ ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
 :service  rdf:type  fuseki:Service ;
         rdfs:label       "TDB2 rxno" ;
-        fuseki:dataset   :tdb_dataset_readwrite ;
+        fuseki:dataset   :tdb_dataset_rw ;
         fuseki:endpoint  [ fuseki:name       "get" ;
                            fuseki:operation  fuseki:gsp-r
                          ] ;
@@ -32,10 +33,11 @@ ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
                          ] ;
         fuseki:endpoint  [ fuseki:name       "data" ;
                            fuseki:operation  fuseki:gsp-rw
-                         ] ;
+                         ];
         fuseki:endpoint  [ fuseki:name       "sparql" ;
                            fuseki:operation  fuseki:query
                          ] ;
+        fuseki:name      "rxno" .
 
 ja:ViewGraph  rdfs:subClassOf  ja:Model .
 
@@ -54,7 +56,7 @@ ja:RDFDatasetOne  rdfs:subClassOf  ja:RDFDataset .
 
 ja:MemoryDataset  rdfs:subClassOf  ja:RDFDataset .
 
-:tdb_dataset_readwrite
+:tdb_dataset_rw 
         rdf:type       tdb2:DatasetTDB2 ;
         tdb2:location  "/etc/fuseki/databases/rxno" .
 
