@@ -84,10 +84,14 @@
     src: ckan1368.ttl
     dest: '{{ fuseki_config_dir }}/configuration/ckan1368.ttl'
 
-# load test
-- name: load catalog to tdb2
+# load test & test2
+- name: load test to tdb2
   command:
     cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/test {{ src_dir }}/test.ttl'
+
+- name: load test2 to tdb2
+  command:
+    cmd: '{{ jena_src_dir }}/bin/tdb2.tdbloader --loc={{ fuseki_config_dir }}/databases/test {{ src_dir }}/test2.ttl'
 
 - name: copy fuseki test dataset config
   copy:
