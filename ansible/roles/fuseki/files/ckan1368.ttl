@@ -22,7 +22,7 @@ tdb2:GraphTDB2  rdfs:subClassOf  ja:Model .
 
 ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
-:service_tdb_readonly  rdf:type  fuseki:Service ;
+:service  rdf:type  fuseki:Service ;
         rdfs:label       "TDB2 ckan1368" ;
         fuseki:dataset   :tdb_dataset_readonly ;
         fuseki:endpoint  [ fuseki:name       "get" ;
