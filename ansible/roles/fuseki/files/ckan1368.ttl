@@ -24,7 +24,7 @@ ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
 :service  rdf:type  fuseki:Service ;
         rdfs:label       "TDB2 ckan1368" ;
-        fuseki:dataset   :tdb_dataset_readonly ;
+        fuseki:dataset   :dataset ;
         fuseki:endpoint  [ fuseki:name       "get" ;
                            fuseki:operation  fuseki:gsp-r
                          ] ;
@@ -53,5 +53,18 @@ ja:MemoryDataset  rdfs:subClassOf  ja:RDFDataset .
 :tdb_dataset_readonly 
         rdf:type       tdb2:DatasetTDB2 ;
         tdb2:location  "/etc/fuseki/databases/ckan1368" .
+
+:dataset rdf:type ja:RDFDataset ;
+    ja:defaultGraph :model_inf .
+
+:model_inf rdf:type ja:InfModel ;
+     ja:baseModel :graph ;
+     ja:reasoner [
+         ja:reasonerURL <http://jena.hpl.hp.com/2003/OWLFBRuleReasoner>
+     ] .
+
+:graph rdf:type tdb2:GraphTDB2 ;
+  tdb2:dataset :tdb_dataset_readonly ;
+  .
 
 ja:DatasetRDFS  rdfs:subClassOf  ja:RDFDataset .
