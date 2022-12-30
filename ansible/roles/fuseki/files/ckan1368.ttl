@@ -22,16 +22,16 @@ tdb2:GraphTDB2  rdfs:subClassOf  ja:Model .
 
 ja:RDFDatasetZero  rdfs:subClassOf  ja:RDFDataset .
 
-:service_tdb_readonly  rdf:type            fuseki:Service ;
-        rdfs:label                    "TDB2 ckan1368" ;
-        fuseki:dataset                :tdb_dataset_readonly ;
-        fuseki:name                   "ckan1368" ;
-        fuseki:serviceQuery           "query" , "" , "sparql" ;
-        fuseki:serviceReadGraphStore  "get" ;
-        fuseki:serviceReadGraphstore
-                "data" ;
-        fuseki:serviceUpdate          "" , "update" ;
-        fuseki:serviceUpload          "upload" .
+:service_tdb_readonly  rdf:type  fuseki:Service ;
+        rdfs:label       "TDB2 ckan1368" ;
+        fuseki:dataset   :tdb_dataset_readonly ;
+        fuseki:endpoint  [ fuseki:name       "get" ;
+                           fuseki:operation  fuseki:gsp-r
+                         ] ;
+        fuseki:endpoint  [ fuseki:name       "sparql" ;
+                           fuseki:operation  fuseki:query
+                         ] ;
+        fuseki:name      "ckan1368" .
 
 ja:ViewGraph  rdfs:subClassOf  ja:Model .
 
