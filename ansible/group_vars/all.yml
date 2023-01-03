@@ -1,7 +1,7 @@
 src_dir: '/usr/local/src'
 jena_src_dir: '{{ src_dir }}/apache-jena-4.6.1'
 fuseki_src_dir: '{{ src_dir }}/apache-jena-fuseki-4.6.1'
-web_src_url: 'hhttps://dlcdn.apache.org/jena/binaries'
+web_src_url: 'https://dlcdn.apache.org/jena/binaries'
 web_archive_url: 'http://archive.apache.org/dist/jena/binaries'
 jena_binary: '{{web_archive_url}}/apache-jena-4.6.1.tar.gz'
 fuseki_binary: '{{web_archive_url}}/apache-jena-fuseki-4.6.1.tar.gz'
