@@ -3,7 +3,7 @@
         rewrite ^{{ fuseki_web_path }}/(.*) /$1 break; # links to /foo go to /ts/foo
         proxy_pass http://127.0.0.1:{{ fuseki_port }};
         subs_filter_types text/html text/css text/xml;
-        subs_filter ':{{ fuseki_port }}' '{{ fuseki_web_path }}';
+        subs_filter ':{{ fuseki_port }}' '{{ nginx_subs_filter_path }}';
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;   
